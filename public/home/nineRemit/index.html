@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<meta http-equiv="Access-Control-Allow-Origin" content="*">
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="css/swiper.min.css" />
+		<link rel="stylesheet" type="text/css" href="css/common.css" />
+		<link rel="stylesheet" type="text/css" href="css/nineRemit.css" />
+		<title>玖汇首页</title>
+	</head>
+	<body>
+		<div class="swiper-container">
+			<div class="swiper-wrapper">
+				
+			</div>
+			<!-- 如果需要分页器 -->
+			<!--<div class="swiper-pagination"></div>-->
+
+			<!-- 如果需要导航按钮 -->
+			<!--<div class="swiper-button-prev"></div>-->
+			<!--<div class="swiper-button-next"></div>-->
+
+			<!-- 如果需要滚动条 -->
+			<!--<div class="swiper-scrollbar"></div>-->
+		</div>
+		<!-- 头部-->
+		<div class="navbar-fixed-top topbox">
+			<!--<img class="indextop" src="imgs/index/home_jpg_banner_default.png">-->
+			<p class="title_txt text-center">玖汇</p>
+			<div class="datebox">
+				<img class="between_bg" src="imgs/index/home_png_txkh_default.png">
+				<div id="between_num"></div>
+			</div>
+		</div>
+		<!-- 中间列表-->
+		<div class="middlebox">
+			<div class="list_title text-center">
+				<p class="tab_header">期号</p>
+				<p class="tab_head">开奖号码</p>
+				<p class="tab_head">开奖结果</p>
+				<p class="tab_head">开奖状态</p>
+				<p class="tab_head">出号日期</p>
+			</div>
+		</div>
+
+
+		<!--尾部-->
+		<div class="navbar-fixed-bottom  navbox">
+			<div>
+				<img src="imgs/index/home_icon_home_selected.png"/>
+				<p style="color:#25c744 "> 首页</p>
+			</div>
+			<div class="trendPage">
+				<img src="imgs/index/home_icon_zoushi_default.png"/>
+				<p class="">走势</p>
+			</div>
+			<div class="planPage">
+				<img src="imgs/index/home_icon_plan_default.png"/>
+				<p class="">计划</p>
+			</div>
+			<div class="300Page">
+				<img style="margin-left: 0.1rem" src="imgs/index/home_icon_300qi_default.png"/>
+				<p class="">300期</p>
+			</div>
+		</div>
+
+		<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/important.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/swiper.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/baseUrl.js"></script>
+		<script type="text/javascript">
+			$(function(){
+
+				$(".trendPage").click(function(){
+					window.location.href='trendPage.html';
+				});
+				$(".planPage").click(function(){
+					window.location.href='plan.html';
+				});
+				$(".300Page").click(function(){
+					window.location.href='300Page.html';
+				});
+				$.ajax({
+					url: baseUrl+'index.php/index/image/watch/',
+					type: 'post',
+					async:true,
+					dataType:'json',
+					success: function(ret){
+						console.log(ret)
+//						console.log(JSON.stringify(ret))
+
+						var imgdata = ret.result;
+						if(ret.code == 1){
+							if(imgdata!=null){
+								for(var i in imgdata) {
+									//localStorage.setItem("imagesrc", imgdata[i].image);
+									//$(".indextop").eq(i).attr("src","http://"+(localStorage.getItem("imagesrc")));
+									$(".swiper-wrapper").append(
+									'<div class="swiper-slide">'+
+									'<img class="indextop" src="http://'+imgdata[i].image+'">'+
+									'</div>'
+									);
+									//$(".indextop").eq(i).attr("src","http://"+imgdata[i].image);
+								}
+								var mySwiper = new Swiper ('.swiper-container', {
+									speed:300,
+									autoplay : {
+									delay:3000
+									}
+				})
+							}
+						}
+					}
+				});
+				$.ajax({
+					url: baseUrl,
+					type: 'post',
+					async:true,
+					dataType:'json',
+					success: function(ret){
+						console.log(ret)
+//						console.log(JSON.stringify(ret))
+
+						var listdata = ret.result;
+						console.log(listdata);
+
+						var listHTMl = '';
+
+						if(ret.code == 1){
+							if(listdata!=null){
+								localStorage.setItem("kaihe_date",ret.hq);
+								$("#between_num").html(localStorage.getItem("kaihe_date"));
+
+								for(var i in listdata){
+									listHTMl += '<div class="list_green text-center">';
+									listHTMl += '<p class="tab_header">'+listdata[i].issue.substring(listdata[i].issue.length -3)+' 期'+'</p>';
+									listHTMl += '<p class="tab_head">'+listdata[i].number+'</p>';
+									listHTMl += '<p class="tab_head text-center" id="imageState">';
+									if(listdata[i].result =="0"){
+										listHTMl += '<img class="listimg" src="imgs/trend/zouzhi_icon_dragon_default.png">';
+									}else if(listdata[i].result =="1"){
+										listHTMl += '<img class="listimg" src="imgs/trend/zoushi_icon_tirger_default.png">';
+									}else if(listdata[i].result =="2"){
+										listHTMl += '<img class="listimg" src="imgs/trend/zoushi_icon_he_default.png">';
+									}
+									listHTMl += '</p>';
+									listHTMl += '<p class="tab_head1">'+listdata[i].state+'</p>';
+									listHTMl += '<p class="tab_head2">'+listdata[i].dateline.split(" ")[0]+'</p>';
+									listHTMl += '</div>';
+								}
+								$('.middlebox').append(listHTMl);
+							}
+						}else{
+							console.log(455);
+						}
+					}
+				});
+			});
+
+		</script>
+	</body>
+</html>

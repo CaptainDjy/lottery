@@ -1,0 +1,115 @@
+{extend name="public/base"}
+{block name="main"}
+<h2 class="page-header">添加倍投计划</h2>
+<div class="row table-responsive">
+  <form action="{:url('admin/plan/addplan')}" method="post">
+  <table class="table table-condensed table-hover table-bordered table-striped">
+    <tr>
+      <th>计划期间(选择日期)</th>
+      <th>最终截止(期数为数字)</th>
+      <th>当前预测值(龙,虎,和)</th>          
+    </tr>
+
+    
+
+    <tr>
+      <td><input type="text" autocomplete="off" name="period" id="period" value="" class="form-control"></td>
+      <td><input type="text" autocomplete="off" name="abort" id="abort" value="" class="form-control"></td>
+      <td><input type="text" autocomplete="off" name="forecast" id="forecast" value="" class="form-control"></td>
+      
+    </tr>
+
+    </table>
+
+    <div class="form-group">
+            <div class="col-md-2">
+                <label class="control-label">文字分析:</label>
+            </div>
+            <div class="col-md-5">
+                <textarea name="analyze" class="form-control" cols="30" rows="5"></textarea>
+            </div>
+            <div class="col-md-5">
+              <span class="help-block">请输入内容</span>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <div class="col-md-10 col-md-offset-2">
+                <input type="submit" value="添加" class="btn btn-success">
+                <input type="reset" value="取消" class="btn btn-danger">
+            </div>
+        </div>
+</form>  
+
+
+</div>
+
+{/block}
+{block name="js"}
+
+{load file="__JS__/jquery-3.3.1.js"}
+{load file="__STATIC__/jquery-ui/jquery-ui.js"}
+{load file="__STATIC__/jquery-validation/dist/jquery.validate.js"}
+<script type="text/javascript">
+    // 就绪函数
+    $(function(){
+      // 调用日期拾取器
+      $('#period').datepicker({
+        changeMonth: true,
+            changeYear: true,
+            dateFormat: 'yy-mm-dd'
+      });
+    });
+  </script>
+
+ <script type="text/javascript">
+    // 就绪函数
+    $(function(){    
+      $('form').validate({
+        rules:{
+          // name属性:{规则}
+          period:{
+            // 规则名:规则值
+            required:true,
+            dateISO:true,
+            minlength:10,
+            maxlength:10,
+          },
+          abort:{
+            required:true,
+            minlength:1,
+            max:120,
+            number:true,
+            digits:true,
+          },
+          forecast:{
+            required:true,
+            equalTo: '#forecast',
+            maxlength:1,
+          },
+        },
+
+        messages:{
+          period:{
+            required:'不能为空',
+            dateISO:'输入正确的时间格式',
+            minlength:'输入正确的时间格式,请使用日期选择器',
+            maxlength:'输入正确的时间格式,请使用日期选择器',
+          },
+
+          abort:{
+            required:'不能为空,输入期数(只能输入数字)',
+            minlength:'不能小于1期',
+            max:'不能大于120期',
+            number:'输入合法的数字',
+            digits:'必须输入整数',
+          },
+          forecast:{
+            required:'不能为空,预测值为龙|虎|和',
+            maxlength:'请输入龙|虎|和',
+          },
+        }
+      });
+    });
+  </script>
+{/block}

@@ -1,0 +1,69 @@
+{extend name="public/base"}
+{block name="main"}
+<div class="col-md-8">
+        <h1>管理员</h1>
+        <form action="{:url('admin/user/update',['id'=>$data.Id])}" method="post">
+           <div class="form-group">
+              <div class="col-md-2">
+                <label class="control-label">账号:</label>
+              </div>
+              <div class="col-md-5">
+                <input type="text" autocomplete="off" name="username" id="username" value="{$data.username}" class="form-control">
+              </div>
+              <div class="col-md-5">
+                <span class="help-block">用户名的长度是2-100位</span>
+              </div>
+            </div>
+        <div class="form-group">
+            <div class="col-md-2">
+                <label class="control-label">原密码:</label>
+            </div>
+            <div class="col-md-5">
+                <input type="password" name="password" id="password" value="" class="form-control">
+            </div>
+            <div class="col-md-5">
+              <span class="help-block">请输入原密码</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-2">
+                <label class="control-label">新密码:</label>
+            </div>
+            <div class="col-md-5">
+                <input type="password" name="password1" id="password1" value="" class="form-control">
+            </div>
+            <div class="col-md-5">
+              <span class="help-block">请输入新密码,最少6位</span>
+            </div>
+        </div>
+         <div class="form-group">
+            <div class="col-md-2">
+                <label class="control-label">确认密码:</label>
+            </div>
+            <div class="col-md-5">
+                <input type="password" autocomplete="off" name="password2" id="password2" value="" class="form-control">
+            </div>
+            <div class="col-md-5">
+                <span class="help-block">请确认新密码</span>
+            </div>
+        </div>
+ 
+        <div class="form-group">
+            <div class="col-md-10 col-md-offset-2">
+                <input type="submit" value="修改" class="btn btn-success">
+                <input type="reset" value="取消" class="btn btn-danger">
+            </div>
+        </div>
+      </form>
+    </div>
+{/block}
+
+{block name="right"}
+    <div class="col-md-4">
+        <h1>这里是右边栏</h1>
+    </div>
+{/block}
+
+{block name="js"}
+
+{/block}

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="css/common.css" />
+		<link rel="stylesheet" type="text/css" href="css/nineRemit.css" />
+		<title>走势</title>
+	</head>
+	<body>
+		<!-- 头部-->
+		<div class="navbar-fixed-top topbox">
+			<p class="trend_txt text-center">走势</p>
+			<p class=""></p>
+		</div>
+		<!-- 中间列表-->
+		<div class="trend_middle">
+			<div class="zerp text-center">
+
+			</div>
+		</div>
+
+
+		<!--尾部-->
+		<div class="navbar-fixed-bottom  navbox">
+			<div class="homePage">
+				<img src="imgs/index/home_icon_home_default.png"/>
+				<p class="">首页</p>
+			</div>
+			<div >
+				<img src="imgs/index/home_icon_zoushi_selected.png"/>
+				<p style="color:#25c744">走势</p>
+			</div>
+			<div class="planPage">
+				<img src="imgs/index/home_icon_plan_default.png"/>
+				<p class="">计划</p>
+			</div>
+			<div class="300Page">
+				<img style="margin-left: 0.1rem" src="imgs/index/home_icon_300qi_default.png"/>
+				<p class="">300期</p>
+			</div>
+		</div>
+
+		<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/important.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/baseUrl.js"></script>
+		<script type="text/javascript">
+			$(function(){
+				$(".homePage").click(function(){
+					window.location.href='index.html';
+				});
+				$(".planPage").click(function(){
+					window.location.href='plan.html';
+				});
+				$(".300Page").click(function(){
+					window.location.href='300Page.html';
+				});
+					$.ajax({
+						url: baseUrl,
+						type: 'post',
+						async:true,
+						dataType:'json',
+						success: function(ret){
+							console.log(ret)
+//						console.log(JSON.stringify(ret))
+
+							var listdata = ret.result;
+							console.log(listdata);
+
+							var listHTMl = '';
+							var listHTMl2 = '';
+							var listHTMl3 = '';
+							if(ret.code == 1){
+								if(listdata!=null){
+									for(var i in listdata){
+											listHTMl += '<div class="middle_lf">';
+											listHTMl += '<div style="padding: 0.15rem 0">';
+											listHTMl += '<span class="qihao">'+listdata[i].issue.substring(listdata[i].issue.length -5)+'期'+'</span>';
+											listHTMl += '<span class="numcolor">'+" "+listdata[i].number.replace(/\s/g,"")+" "+'</span>';
+											if(listdata[i].result =="0"){
+												listHTMl += '<img class="trendimg" src="imgs/300deadline/duoqi_icon_drgon_default.png">';
+											}else if(listdata[i].result =="1"){
+												listHTMl += '<img class="trendimg" src="imgs/300deadline/duoqi_icon_tiger_default.png">';
+											}else if(listdata[i].result =="2"){
+												listHTMl += '<img class="trendimg" src="imgs/300deadline/duoqi_icon_he_default.png">';
+											}
+											listHTMl += '</div>';
+											listHTMl += '</div>';
+									}
+									$('.zerp').append(listHTMl);
+								}
+							}else{
+								console.log(455);
+							}
+						}
+					});
+			});
+
+		</script>
+	</body>
+
+
+</html>

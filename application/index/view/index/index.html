@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link href="__STATIC__/bootstrap/css/bootstrap.css" rel="stylesheet">
+</head>
+<body>
+<!-- 		<script language="JavaScript">
+function myrefresh(){
+window.location.reload();
+}
+setTimeout('myrefresh()',7000); //指定1秒刷新一次
+</script> -->
+	<div class="col-md-8">
+	<div class="table-responsive">
+		<table class="table table-hover table-condensed table-striped">
+		<tr>
+			<td>序号</td>
+			<td>期数</td>
+			<td>开奖号码</td>
+			<td>开奖时间</td>
+			<td>开奖结果</td>
+			<td>开奖状态</td>
+			<td>万</td>
+			<td>千</td>
+			<td>百</td>
+			<td>十</td>
+			<td>个</td>
+		</tr>
+		
+	<br>
+	
+	</div>
+</div>
+	<script src="__JS__/jquery-3.3.1.js"></script>
+    <script src="__STATIC__/bootstrap/js/bootstrap.js"></script>
+    	<script type="text/javascript">
+		// 就绪函数
+		$(function(){
+			// 单击"注册"按钮,通过Ajax完成表单提交
+			// $('#regbtn').click(function(){
+
+$.ajax({
+	type:'post',
+	url:'http://47.100.160.168:814/',	
+	data:$('form').serialize(),
+	success:function(res){
+		console.log(res);
+		$('#msg').html(res);
+}
+})
+});
+
+	</script>	
+</body>
+</html>

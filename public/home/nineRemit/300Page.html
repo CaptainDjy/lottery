@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="css/common.css" />
+		<link rel="stylesheet" type="text/css" href="css/nineRemit.css" />
+		<title>300期</title>
+	</head>
+	<body>
+		<!-- 头部-->
+		<div class="navbar-fixed-top topbox300">
+			<p class="plan_txt text-center">300期</p>
+			<p class="plan_tips">300期开奖号码展示</p>
+			<div class="item_middle">
+				<div class="qihao_item text-center">期号</div>
+				<div class="statebox">
+					<p class="state text-center">万个状态</p>
+					<div class="unitsbox">
+						<span class="units">万</span>
+						<span class="units">千</span>
+						<span class="units">百</span>
+						<span class="units">十</span>
+						<span class="units">个</span>
+					</div>
+
+				</div>
+				<div class="qihao_item text-center">开奖状态</div>
+			</div>
+		</div>
+		<!-- 中间列表-->
+
+		<div class="boxbox">
+			<!--<div class="item_detail">-->
+				<!--<div class="qihao_date text-center">876</div>-->
+				<!--<div class="statebox">-->
+					<!--<div class="numsbox">-->
+						<!--<span class="nums">8</span>-->
+						<!--<span class="nums">1</span>-->
+						<!--<span class="nums">4</span>-->
+						<!--<span class="nums">8</span>-->
+						<!--<span class="nums">2</span>-->
+					<!--</div>-->
+				<!--</div>-->
+				<!--<div class="qihao_date text-center">-->
+					<!--<img class="numsimg" src="imgs/300deadline/duoqi_icon_drgon_default.png">-->
+				<!--</div>-->
+			<!--</div>-->
+		</div>
+
+
+
+
+
+		<!--尾部-->
+		<div class="navbar-fixed-bottom  navbox"
+				>
+			<div class="homePage">
+				<img src="imgs/index/home_icon_home_default.png"/>
+				<p>首页</p>
+			</div>
+			<div class="trendPage">
+				<img src="imgs/index/home_icon_zoushi_default.png"/>
+				<p class="">走势</p>
+			</div>
+			<div class="planPage">
+				<img src="imgs/index/home_icon_plan_default.png"/>
+				<p>计划</p>
+			</div>
+			<div class="300Page">
+				<img style="margin-left: 0.1rem" src="imgs/index/home_icon_300qi_selected.png"/>
+				<p style="color:#25c744">300期</p>
+			</div>
+		</div>
+
+		<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/important.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/baseUrl.js"></script>
+		<script type="text/javascript">
+			$(function(){
+				$(".homePage").click(function(){
+					window.location.href='index.html';
+				});
+				$(".trendPage").click(function(){
+					window.location.href='trendPage.html';
+				});
+				$(".planPage").click(function(){
+					window.location.href='plan.html';
+				});
+//				var page =1;
+//
+//				$(window).scroll(function(){
+//					var scrollTop = $(this).scrollTop();
+//					var scrollHeight = $(document).height();
+//					var windowHeight = $(this).height();
+//					if(scrollTop + windowHeight == scrollHeight){
+//						page+=1;
+//						getPurchaseList(page);
+//					}
+//				});
+//				function getPurchaseList(page){
+				$.ajax({
+					url: baseUrl+'index.php/index/index/three',
+					type: 'post',
+//					data: {
+//						page: page
+//					},
+					async:true,
+					dataType:'json',
+					success: function(ret){
+						console.log(ret)
+//						console.log(JSON.stringify(ret))
+
+						var listdata = ret.result;
+						console.log(listdata);
+
+						var listHTMl = '';
+
+						if(ret.code == 1){
+							if(listdata!=null){
+								localStorage.setItem("kaihe_date",ret.hq);
+								for(var i in listdata){
+									listHTMl += '<div class="item_detail">';
+									listHTMl += '<div class="qihao_date text-center">'+listdata[i].issue+'</div>';
+									listHTMl += '<div class="statebox">';
+									listHTMl += '<div class="numsbox">';
+									listHTMl += '<span class="nums">'+listdata[i].number.split(" ")[0]+'</span>';
+									listHTMl += '<span class="nums">'+listdata[i].number.split(" ")[1]+'</span>';
+									listHTMl += '<span class="nums">'+listdata[i].number.split(" ")[2]+'</span>';
+									listHTMl += '<span class="nums">'+listdata[i].number.split(" ")[3]+'</span>';
+									listHTMl += '<span class="nums">'+listdata[i].number.split(" ")[4]+'</span>';
+									listHTMl += '</div>';
+									listHTMl += '</div>';
+									listHTMl += '<div class="qihao_date text-center">';
+									if(listdata[i].result =="0"){
+										listHTMl += '<img class="numsimg" src="imgs/trend/zouzhi_icon_dragon_default.png">';
+									}else if(listdata[i].result =="1"){
+										listHTMl += '<img class="numsimg" src="imgs/trend/zoushi_icon_tirger_default.png">';
+
+									}else{
+										listHTMl += '<img class="numsimg" src="imgs/trend/zoushi_icon_he_default.png">';
+									}
+									listHTMl += '</div>';
+									listHTMl += '</div>';
+								}
+								$('.boxbox').append(listHTMl);
+							}
+						}else{
+							console.log(455);
+						}
+					}
+				});
+//			}
+//				getPurchaseList(page);
+
+
+
+
+
+				//遍历中间列表
+//				var listHTMl = '';
+//				for(i=0;i<20;i++){
+//					console.log(i);
+//					listHTMl += '<div class="item_detail">';
+//					listHTMl += '<div class="qihao_date text-center">'+i+'</div>';
+//					listHTMl += '<div class="statebox">';
+//					listHTMl += '<div class="numsbox">';
+//					listHTMl += '<span class="nums">'+"7"+'</span>';
+//					listHTMl += '<span class="nums">'+"1"+'</span>';
+//					listHTMl += '<span class="nums">'+"4"+'</span>';
+//					listHTMl += '<span class="nums">'+"8"+'</span>';
+//					listHTMl += '<span class="nums">'+"2"+'</span>';
+//					listHTMl += '</div>';
+//					listHTMl += '</div>';
+//					listHTMl += '<div class="qihao_date text-center">';
+//					listHTMl += '<img class="numsimg" src="imgs/300deadline/duoqi_icon_drgon_default.png">';
+//					listHTMl += '</div>';
+//					listHTMl += '</div>';
+//				}
+//				$('.boxbox').append(listHTMl);
+
+			});
+
+		</script>
+	</body>
+
+
+</html>

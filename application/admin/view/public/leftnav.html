@@ -1,0 +1,100 @@
+<div class="panel-group" id="group">
+
+  <div class="panel {if condition="$Request.controller=='User'"}panel-info{else}panel-default{/if}">
+    <div class="panel-heading">
+      <a href="#user" data-toggle="collapse" data-parent="#group">            
+      <h4 class="panel-title">后台管理<span class="caret"></span></h4>
+      </a>
+    </div>
+    <div class="collapse {if condition="$Request.controller=='User'"}in{/if} panel-collapse" id="user">
+      <div class="panel-body">
+       <ul class="list-group">
+          <li class="list-group-item">
+            <a href="{:url('admin/user/index')}">管理员列表</a>
+          </li>
+          <li class="list-group-item">
+            <a href="{:url('admin/user/add')}">添加管理员</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+<div class="panel {if condition="$Request.controller=='Plan'"}panel-info{else}panel-default{/if}">
+    <div class="panel-heading">
+      <a href="#plan" data-toggle="collapse" data-parent="#group">
+      <h4 class="panel-title">倍投计划<span class="caret"></span></h4>
+      </a>
+    </div>
+    <div class="collapse {if condition="$Request.controller=='Plan'"}in{/if} panel-collapse" id="plan">
+      <div class="panel-body">
+       <ul class="list-group">
+          <li class="list-group-item">
+            <a href="{:url('admin/plan/watch')}">计划列表</a>
+          </li>
+          <li class="list-group-item">
+            <a href="{:url('admin/plan/add')}">添加计划</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel {if condition="$Request.controller=='Project'"}panel-info{else}panel-default{/if}">
+    <div class="panel-heading">
+      <a href="#project" data-toggle="collapse" data-parent="#group">
+      <h4 class="panel-title">平推计划<span class="caret"></span></h4>
+      </a>
+    </div>
+    <div class="collapse {if condition="$Request.controller=='Project'"}in{/if} panel-collapse" id="project">
+      <div class="panel-body">
+       <ul class="list-group">
+          <li class="list-group-item">
+            <a href="{:url('admin/project/watch')}">计划列表</a>
+          </li>
+          <li class="list-group-item">
+            <a href="{:url('admin/project/add')}">添加计划</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel {if condition="$Request.controller=='Lottery'"}panel-info{else}panel-default{/if}">
+    <div class="panel-heading">
+      <a href="#lottery" data-toggle="collapse" data-parent="#group">
+      <h4 class="panel-title">开奖结果<span class="caret"></span></h4>
+      </a>
+    </div>
+    <div class="collapse {if condition="$Request.controller=='Lottery'"}in{/if} panel-collapse" id="lottery">
+      <div class="panel-body">
+       <ul class="list-group">
+          <li class="list-group-item">
+            <a href="{:url('admin/lottery/watch')}">开奖列表</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel {if condition="$Request.controller=='Image'"}panel-info{else}panel-default{/if}">
+    <div class="panel-heading">
+      <a href="#image" data-toggle="collapse" data-parent="#group">
+      <h4 class="panel-title">轮播管理<span class="caret"></span></h4>
+      </a>
+    </div>
+    <div class="collapse {if condition="$Request.controller=='Image'"}in{/if} panel-collapse" id="image">
+      <div class="panel-body">
+       <ul class="list-group">
+          <li class="list-group-item">
+            <a href="{:url('admin/image/watch')}">轮播展示</a>
+          </li>
+           <li class="list-group-item">
+            <a href="{:url('admin/image/add')}">添加轮播</a>
+          </li>
+        </ul>        
+      </div>
+    </div>
+  </div>
+</div>

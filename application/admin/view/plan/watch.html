@@ -1,0 +1,61 @@
+{extend name="public/base"}
+{block name="main"}
+<h2 class="page-header">倍投计划列表</h2>
+<div class="row table-responsive">
+	<table class="table table-condensed table-hover table-bordered table-striped">
+	 	<tr>
+	 		<th>计划期间(日期)</th>
+	 		<th>最终截止(预测期数)</th>
+	 		<th>当前预测值(龙,虎,和)</th>
+	 		<th>计划结果(未中,中)</th>
+	 		<th>文字分析</th>
+	 		<th>操作</th>
+	 	</tr>
+	 	{volist name="plan" id="vo"}
+	 	<tr>
+	 		<td>{$vo.period}</td>
+	 		<td>第{$vo.abort|mb_substr=8,10}期</td>
+	 		
+	 		{if condition="$vo.forecast==0"}
+	 		<td>龙</td>
+	 		
+	 		{elseif condition="$vo.forecast==1"}
+	 		<td>虎</td>
+	 		{else/}
+	 		<td>和</td>
+	 		{/if}
+
+	 		{if condition="$vo.pres==0"}
+	 		<td>未中</td>
+			{elseif condition="$vo.pres==1"}
+			<td>中</td>
+			{else/}
+			<td>待开</td>
+	 		{/if}
+	 		<td>{$vo.analyze|mb_substr=0,5}</td>
+	 		<td>	 			
+	 			<a href="{:url('admin/plan/amend',['id'=>$vo.Id])}" class="btn btn-primary">修改</a>
+	 			<a href="{:url('admin/plan/deleteplan',['id'=>$vo.Id])}" onclick="return confirm('是否确认删除')" class="btn btn-danger">删除</a>
+	 		</td>
+	 	</tr>
+	 	{/volist}
+	</table>
+	
+</div>
+
+<div class="row table-responsive">
+	<table>
+		<tr>
+			<th><h3>最新一条文字分析</h3></th>
+		</tr>
+	
+		<tr>
+		<td>{$analyze.analyze}</td>
+		</tr>	
+
+	</table>
+</div>
+{/block}
+{block name="js"}
+
+{/block}

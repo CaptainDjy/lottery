@@ -1,0 +1,354 @@
+body,html{
+	/*max-width: 780px;*/
+	margin: 0 auto;
+}
+/*玖汇首页*/
+.topbox{
+	position: relative;
+	left: 0;
+	top: 0;
+
+}
+.carousel-inner img {
+	width: 100%;
+	height: 100%;
+}
+.indextop{
+	width: 100%;
+	height: 3.8rem;
+}
+.title_txt{
+	font-size: 0.4rem;
+	font-weight: bold;
+	color: #ffffff;
+	position: absolute;
+	top: -3rem;
+	width: 100%;
+}
+.datebox{
+	position: absolute;
+	top: -0.5rem;
+	width: 100%;
+	text-align: center;
+}
+.between_bg{
+	width: 6.5rem;
+	height: 1rem;
+}
+#between_num{
+	font-size: 0.73rem;
+	color: #ff4c3c;
+	position: absolute;
+	top: 0;
+	right: 1.3rem;
+	width: 1.2rem;
+	font-weight: bold;
+}
+/*首页_中间list*/
+.middlebox{
+	margin-top: 0.7rem;
+	margin-bottom: 2rem;
+}
+.list_title{
+	background-color: #ECFFF5;
+	border-radius: 0.5rem;
+	padding: 0.1rem 0.3rem;
+	font-size: 0.24rem;
+	color: #333333;
+	display: flex;
+	justify-content: space-between;
+}
+.tab_header{
+	width: 20%;
+}
+.tab_head{
+	width: 20%;
+}
+.tab_head1{
+	width: 18%;
+}
+.tab_head2{
+	width: 22%;
+}
+.list_green{
+	border-radius: 0.5rem;
+	padding:0.05rem 0.3rem;
+	display: flex;
+	justify-content: space-between;
+	color: #333333;
+	font-size: 0.24rem;
+}
+.list_green:nth-child(odd){
+	background-color: #ECFFF5;
+}
+.listtabel div{
+	height: 0.42rem;
+	font-size: 0.24rem;
+	color: #333333;
+	padding-top: 0.05rem;
+	vertical-align: middle;
+}
+.listimg{
+	/*background-image: url("../imgs/index/home_icon_tiger_default.png");*/
+	background-repeat:round;
+	width: 0.42rem;
+	height: 0.42rem;
+}
+
+/*首页_尾部*/
+a{
+	display: inline-block;
+}
+.indextop .img {
+	background-size: cover;
+	background-position: 0;
+	width: 100%;
+	height: 6rem;
+}
+.navbox{
+	background-color: #122b40;
+	padding: 0.12rem 0.3rem;
+	display: flex;
+	justify-content: space-between;
+}
+.navbox img{
+	width: 0.5rem;
+	height: 0.5rem;
+}
+.navbox p{
+	font-size: 0.24rem;
+	color: #999;
+	padding-top: 0.08rem;
+}
+/*玖汇-走势*/
+.trend_txt{
+	padding: 0.26rem 0;
+	background-color: #25c774;
+	font-size: 0.36rem;
+	color: #ffffff;
+	/*position: fixed;*/
+	width: 100%;
+	top: 0;
+}
+.line{
+	padding: 0.15rem 0;
+	background-color: white;
+	position: fixed;
+	width: 100%;
+	top: 1rem;
+}
+.trend_middle{
+	/*margin: 0.15rem 0 2rem;*/
+	/*flex-wrap:wrap;*/
+	/*align-content:space-between;*/
+}
+.middle_lf{
+	text-align: right;
+	display: inline-block;
+	/*padding-left: 0.23rem;*/
+}
+
+.whitebg{
+	border-radius: 0.5rem;
+	padding:0.15rem 0.25rem;
+	display: flex;
+	justify-content: space-between;
+	background-color: #ffffff;
+}
+.qihao{
+	color: #7b7b7b;
+	font-size: 0.24rem;
+}
+.numcolor{
+	color: #25c774;
+	font-size: 0.24rem;
+	padding: 0.05rem;
+}
+.trendimg{
+	width: 0.38rem;
+	height: 0.38rem;
+}
+/*玖汇-计划*/
+.plan_txt{
+	padding: 0.26rem 0;
+	background-color: #25c774;
+	font-size: 0.36rem;
+	color: #ffffff;
+}
+.plan_tips{
+	padding: 0.16rem 0 0.16rem 0.2rem;
+	color: #666666;
+	font-size: 0.24rem;
+}
+.firstbox{
+	position: relative;
+	background-image: url("../imgs/plan/plan_png_btbg_default.png");
+	background-repeat:round;
+	width: 7.36rem;
+	height: 1.9rem;
+	margin-left: 0.2rem;
+
+}
+.secondbox{
+	position: relative;
+	background-image: url("../imgs/plan/plan_png_pingtuibg_default.png");
+	background-repeat:round;
+	width: 7.36rem;
+	height: 1.9rem;
+	margin-left: 0.2rem;
+}
+.texbox{
+	color: #ffffff;
+	position: absolute;
+	top: 0.03rem;
+	font-size: 0.18rem;
+	margin: 0 1.8rem 0 0.2rem;
+}
+/*倍投计划*/
+.beitouplan_tips{
+	padding: 0.16rem 0 0.16rem 0.2rem;
+	color: #25c774;
+	font-size: 0.24rem;
+}
+.txttips{
+	margin: 0.16rem 0.2rem 0;
+	color: #000;
+	font-size: 0.24rem;
+}
+.roundbg{
+	border: 1px solid #000;
+	border-radius: 0.3rem;
+	padding: 0.2rem 0 0.2rem 0.2rem;
+}
+.return{
+	position: absolute;
+	top: 0.28rem;
+	left: 0.24rem;
+	width: 0.4rem;
+	height: 0.4rem;
+
+}
+.beitou_middlebox{
+	/*background-image: url("../imgs/beitou_plan/btplan_bg_liebiaobg_default.png");*/
+	/*background-repeat:round;*/
+	background-color: #41B781;
+	border-radius: 0.25rem;
+	width: 7.15rem;
+	margin-left: 0.18rem;
+	padding-bottom: 0.2rem;
+}
+#ending_{
+	height: 100%;
+	position: absolute;
+	border-right: 1px solid #CAF2E0;
+
+}
+.beitou_list{
+	background-color: rgba(255,255,255,0.3);
+	/*background-color: #843534;*/
+	font-size: 0.24rem;
+	margin: 0.1rem 0;
+	/*background-color:#7ACCA7 ;*/
+	/*opacity: 0.6;*/
+}
+.jihua{
+	width: 2.65rem;
+}
+.endbox{
+	width: 1.41rem;
+	/*border-right: 1px solid #CAF2E0;*/
+}
+.imgbox{
+	margin-top: 0.42rem;
+	width: 0.64rem;
+	height: 0.64rem;
+}
+.txtbox{
+	margin: 0.2rem 0;
+	color: #fff;
+	font-size: 0.24rem;
+}
+.txtlist{
+	color: #fff;
+	font-size: 0.16rem;
+	padding-top: 0.15rem;
+}
+.drgonimg{
+	width: 0.52rem;
+	height: 0.52rem;
+}
+/*玖汇-300期*/
+.topbox300{
+	background-color: #ffffff;
+	position: fixed;
+	left: 0;
+	top: 0;
+
+}
+.item_middle{
+	margin: 0.08rem 0.2rem;
+	display: flex;
+	justify-content: space-between;
+}
+.qihao_item{
+	font-size: 0.28rem;
+	display: inline-block;
+	background-color: #F0FDDC;
+	color: #25c774;
+	padding: 0.44rem 0;
+	width: 24%;
+}
+.statebox{
+	display: inline-block;
+	color: #25c774;
+	width: 50%;
+}
+.state{
+	background-color: #F0FDDC;
+	padding: 0.1rem;
+	margin-bottom: 0.05rem;
+	font-size: 0.24rem;
+}
+.unitsbox{
+	display: flex;
+	justify-content: space-between;
+}
+.units{
+	background-color: #F0FDDC;
+	padding: 0.18rem;
+	font-size: 0.24rem;
+}
+.boxbox{
+	margin-bottom: 2rem;
+	position: relative;
+	top: 3.05rem;
+}
+.item_detail{
+	margin: 0.08rem 0.2rem;
+	display: flex;
+	justify-content: space-between;
+}
+.qihao_date{
+	font-size: 0.24rem;
+	display: inline-block;
+	vertical-align: middle;
+	background-color: #F0FDDC;
+	color: #25c774;
+	width: 24%;
+	padding-top: 0.1rem;
+}
+.numsbox{
+	display: flex;
+	justify-content: space-between;
+}
+.nums{
+	font-size: 0.24rem;
+	background-color: #F0FDDC;
+	color: #707070;
+	padding: 0.1rem 0.23rem;
+	font-weight: bold;
+}
+.numsimg{
+	width: 0.38rem;
+	height: 0.38rem;
+}

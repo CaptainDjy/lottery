@@ -1,0 +1,43 @@
+{extend name="public/base"}
+{block name="main"}
+<div class="col-md-6">
+        <h2 class="page-header">添加轮播图</h2>
+        <form action="{:url('admin/image/amend',['id'=>$data.Id])}" method="post" enctype=multipart/form-data>
+          <div>
+
+              <div>
+                <label class="control-label">标题:</label>
+              </div>
+              <div>
+                <input type="text" autocomplete="off" name="title" id="title" value="{$data.title}" class="form-control">
+              </div>
+              <div><span class="help-block">&nbsp</span></div>
+          </div>
+          
+        <div>
+            <div>
+                <label class="control-label">图片:</label>
+            </div>
+            <div>
+                <input type="file" name="image" class="form-control">
+            </div>    
+             <div><span class="help-block">&nbsp</span></div>
+        </div>
+        
+  
+        <div class="form-group">
+            <div class="col-md-10 col-md-offset-2">
+                <input type="submit" value="修改" class="btn btn-success">
+                <input type="reset" value="取消" class="btn btn-danger">
+            </div>
+        </div>
+      </form>
+    </div>
+{/block}
+
+{block name="js"}
+
+{load file="__JS__/jquery-3.3.1.js"}
+{load file="__STATIC__/jquery-ui/jquery-ui.js"}
+{load file="__STATIC__/jquery-validation/dist/jquery.validate.js"}
+{/block}

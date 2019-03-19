@@ -1,0 +1,134 @@
+{extend name="public/base"}
+{block name="main"}
+<div class="col-md-10">
+        <h1>修改计划</h1>
+        <form action="{:url('admin/plan/updateplan',['id'=>$data.Id])}" method="post">
+          <div>
+
+              <div>
+                <label class="control-label">计划期间:</label>
+              </div>
+              <div>
+                <input type="text" autocomplete="off" name="period" id="period" value="{$data.period}" class="form-control">
+              </div>
+              <div><span class="help-block">&nbsp</span></div>
+          </div>
+          
+        <div>
+            <div>
+                <label class="control-label">最终截止:</label>
+            </div>
+            <div>
+                <input type="text" name="abort" id="abort" value="{$data.abort|mb_substr=8}" class="form-control">
+            </div>    
+             <div><span class="help-block">&nbsp</span></div>          
+        </div>
+        
+        <div class="form-group">
+            <div>
+                <label class="control-label">当前预测值:</label>
+            </div>
+            <div>
+              {if condition="$data.forecast==0"}
+                <input type="text" autocomplete="off" name="forecast" id="forecast" value="龙" class="form-control">
+              
+              {elseif condition="$data.forecast==1"}
+                <input type="text" autocomplete="off" name="forecast" id="forecast" value="虎" class="form-control">
+             
+              {else/}
+                <input type="text" autocomplete="off" name="forecast" id="forecast" value="和" class="form-control">
+              {/if}
+            </div>
+             <div><span class="help-block">&nbsp</span></div>   
+        </div>
+        <br>
+        <div class="form-group">
+            <div>
+                <label class="control-label">文字分析:</label>
+            </div>
+            <div>
+                <textarea name="analyze" class="form-control" cols="30" rows="5">{$data.analyze}</textarea>
+            </div>
+             <div><span class="help-block">&nbsp</span></div>   
+        </div>
+  
+        <div class="form-group">
+            <div class="col-md-10 col-md-offset-2">
+                <input type="submit" value="修改" class="btn btn-success">
+                <input type="reset" value="取消" class="btn btn-danger">
+            </div>
+        </div>
+      </form>
+    </div>
+{/block}
+
+{block name="js"}
+
+{load file="__JS__/jquery-3.3.1.js"}
+{load file="__STATIC__/jquery-ui/jquery-ui.js"}
+{load file="__STATIC__/jquery-validation/dist/jquery.validate.js"}
+<script type="text/javascript">
+    // 就绪函数
+    $(function(){
+      // 调用日期拾取器
+      $('#period').datepicker({
+        changeMonth: true,
+            changeYear: true,
+            dateFormat: 'yy-mm-dd'
+      });
+    });
+  </script>
+
+ <script type="text/javascript">
+    // 就绪函数
+    $(function(){    
+      $('form').validate({
+        rules:{
+          // name属性:{规则}
+          period:{
+            // 规则名:规则值
+            required:true,
+            dateISO:true,
+            minlength:10,
+            maxlength:10,
+          },
+          abort:{
+            required:true,
+            min:1,
+            max:120,
+            maxlength:3,
+            number:true,
+            digits:true,
+          },
+          forecast:{
+            required:true,
+            equalTo: '#forecast',
+            maxlength:1,
+          },
+        },
+
+        messages:{
+          period:{
+            required:'不能为空',
+            dateISO:'输入正确的时间格式',
+            minlength:'输入正确的时间格式,请使用日期选择器',
+            maxlength:'输入正确的时间格式,请使用日期选择器',
+          },
+
+          abort:{
+            required:'不能为空,输入期数(只能输入数字)',
+            min:'最小期数1',
+            max:'最大期数120',
+            maxlength:'不能超过3位数',
+            number:'输入合法的数字',
+            digits:'必须输入整数',
+          },
+          forecast:{
+            required:'不能为空,预测值为龙|虎|和',
+            maxlength:'请输入龙|虎|和',
+          },
+        }
+      });
+    });
+  </script>
+{/block}

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<h2 class="page-header">倍投计划列表</h2>
+<div class="row table-responsive">
+	<table class="table table-condensed table-hover table-bordered table-striped">
+	 	<tr>
+	 		<th>计划期间</th>
+	 		<th>最终截止</th>
+	 		<th>当前预测值</th>
+	 		<th>计划结果</th>
+	 		<th>操作</th>
+	 	</tr>
+	 	{volist name="plan" id="vo"}
+	 	<tr>
+	 		<td>{$vo.period}</td>
+	 		<td>{$vo.abort}</td>
+	 		<td>{$vo.forecast}</td>
+	 		<td>{$vo.pres}</td>
+	 		<td>	 			
+	 			<a href="{:url('admin/plan/amend',['id'=>$vo.Id])}" class="btn btn-primary">修改</a>
+	 			<a href="{:url('admin/plan/deleteplan',['id'=>$vo.Id])}" onclick="return confirm('是否确认删除')" class="btn btn-danger">删除</a>
+	 		</td>
+	 	</tr>
+	 	{/volist}
+	</table>
+	
+</div>
+
+<div class="row table-responsive">
+	<table>
+		<tr>
+			<th>文字分析</th>
+		</tr>
+	{volist name="plan" id="vo"}
+		<tr>
+		<td>{$vo.analyze}</td>
+		</tr>	
+	{/volist}
+	</table>
+</div>
+
+
+<script type="text/javascript">
+	$('#doSearch').click(function(){
+		var query=$('#searchForm').serialize();
+		console.log(query);
+		location.href=location.pathname+'?'+query;
+	});
+</script>
+
+</body>
+</html>

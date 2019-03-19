@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="css/common.css" />
+		<link rel="stylesheet" type="text/css" href="css/nineRemit.css" />
+		<title>平推计划</title>
+	</head>
+	<body>
+		<!-- 头部-->
+		<div class="navbar-fixed-top topbox">
+			<p class="plan_txt text-center">平推计划</p>
+			<p class="beitouplan_tips">计划列表</p>
+			<img class="return" src="imgs/beitou_plan/return.png">
+		</div>
+		<!-- 中间列表-->
+		<div class="beitou_middlebox text-center">
+			<!--<div id="ending_">-->
+				<!--kfsd-->
+			<!--</div>-->
+			<div>
+				<div class="fl jihua text-center" >
+					<img class="imgbox" src="imgs/beitou_plan/btplan_icon_plantime_default.png">
+					<p class="text-center txtbox">计划区间</p>
+				</div>
+				<div class="fl endbox text-center" >
+					<img class="imgbox" src="imgs/beitou_plan/btplan_icon_zzjz_default.png">
+					<p class="text-center txtbox">最终截止</p>
+				</div>
+				<div class="fr endbox text-center" style="margin-left: 0.15rem;">
+					<img class="imgbox" src="imgs/beitou_plan/jihuajieguo.png">
+					<p class="text-center txtbox" >计划结果</p>
+				</div>
+				<div class="fr endbox text-center">
+					<img class="imgbox" src="imgs/beitou_plan/dangqianyuce.png">
+					<p class="text-center txtbox">当前预测值</p>
+				</div>
+
+				<div class="clear"></div>
+			</div>
+		</div>
+
+
+		<p class="txttips">文字分析</p>
+		<p class="txttips roundbg" id="textTip">这里是关于我的平推计划的文字分析，好好规划我的平推计划，大赚一笔问题不大！</p>
+		<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/important.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/baseUrl.js"></script>
+		<script type="text/javascript">
+			$(".return").click(function(){
+				window.location.href='plan.html';
+			});
+//			var page =1;
+//
+//			$(window).scroll(function(){
+//				var scrollTop = $(this).scrollTop();
+//				var scrollHeight = $(document).height();
+//				var windowHeight = $(this).height();
+//				if(scrollTop + windowHeight == scrollHeight){
+//					page+=1;
+//					getPurchaseList(page);
+//				}
+//			});
+//			function getPurchaseList(page){
+				$.ajax({
+					url:baseUrl+'index.php/index/project/watch',
+					type: 'post',
+//					data: {
+//						page: page
+//					},
+					async:true,
+					dataType:'json',
+					success: function(ret){
+						console.log(ret)
+						console.log(ret.analyze)
+
+
+//						console.log(JSON.stringify(ret))
+
+						var listdata = ret.result;
+						console.log(listdata);
+						if(listdata.analyze!=null){
+						}
+
+						var listHTMl = '';
+
+						if(ret.code == 1){
+							if(listdata!=null){
+								localStorage.setItem("textTips",ret.analyze);
+								$("#textTip").html(localStorage.getItem("textTips"));
+
+								for(var i in listdata){
+									listHTMl += '<div class="beitou_list lf">';
+									listHTMl += '<div class="fl jihua text-center">';
+									listHTMl += '<p class="text-center txtlist">'+listdata[i].period+'</p>';
+									listHTMl += '</div>';
+									listHTMl += '<div class="fl endbox text-center">';
+									listHTMl += '<p class="text-center txtlist">'+'第'+listdata[i].abort.substring(listdata[i].abort.length -3)+'期'+'</p>';
+
+									listHTMl += '</div>';
+									listHTMl += '<div class="fl endbox text-center">';
+									if(listdata[i].forecast =="0"){
+										listHTMl += '<img class="drgonimg" src="imgs/trend/zouzhi_icon_dragon_default.png">';
+									}else if(listdata[i].forecast =="1"){
+										listHTMl += '<img class="drgonimg" src="imgs/trend/zoushi_icon_tirger_default.png">';
+									}else{
+										listHTMl += '<img class="drgonimg" src="imgs/beitou_plan/btplan_icon_drgon_default.png">';
+									}
+									listHTMl += '</div>';
+									listHTMl += '<div class="fl endbox text-center" style="margin-left: 0.15rem;">';
+									if(listdata[i].pres == "0"){
+										listHTMl += '<p class="text-center txtlist">'+"未中奖"+'</p>';
+									}else if(listdata[i].pres == "1"){
+										listHTMl += '<p class="text-center txtlist">'+"中奖"+'</p>';
+									}else if(listdata[i].pres == "2"){
+										listHTMl += '<p class="text-center txtlist">'+"待开"+'</p>';
+									}
+
+									listHTMl += '</div>';
+									listHTMl += '<div class="clear">'+'</div>';
+									listHTMl += '</div>';
+								}
+								$('.beitou_middlebox').append(listHTMl);
+							}
+						}else{
+							console.log(455);
+						}
+
+
+					}
+				});
+//			}
+//			getPurchaseList(page);
+
+
+			/* var listHTMl = '';
+				for(i=0;i<3;i++){
+					console.log(i);
+					listHTMl += '<div class="beitou_list lf">';
+					listHTMl += '<div class="fl jihua text-center">';
+					listHTMl += '<p class="text-center txtlist">'+"20180904-20181001"+'</p>';
+					listHTMl += '</div>';
+					listHTMl += '<div class="fl endbox text-center">';
+					listHTMl += '<p class="text-center txtlist">'+"第875期"+'</p>';
+					listHTMl += '</div>';
+					listHTMl += '<div class="fl endbox text-center">';
+					listHTMl += '<img class="drgonimg" src="imgs/beitou_plan/btplan_icon_drgon_default.png">';
+					listHTMl += '</div>';
+					listHTMl += '<div class="fl endbox text-center">';
+					listHTMl += '<p class="text-center txtlist">'+"中"+'</p>';
+					listHTMl += '</div>';
+					listHTMl += '<div class="clear">'+'</div>';
+					listHTMl += '</div>';
+
+				}
+				$('.beitou_middlebox').append(listHTMl);*/
+
+		</script>
+	</body>
+
+
+</html>

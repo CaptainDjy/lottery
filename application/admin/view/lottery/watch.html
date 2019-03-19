@@ -1,0 +1,92 @@
+{extend name="public/base"}
+{block name="main"}
+<div class="col-md-8">
+<h2 class="page-header">开奖结果列表</h2>
+<form action="{:url('admin/lottery/delall')}" method="post">
+<div class="row table-responsive">
+	<table class="table table-condensed table-hover table-bordered table-striped">
+	 	<tr>
+	 		<th>选择</th>
+	 		<th>日期</th>
+	 		<th>期号</th>
+	 		<th>开奖号码</th>
+	 		<th>开奖结果</th>
+	 		<th>操作</th>
+	 	</tr>
+	 	{volist name="lottery" id="vo"}
+	 	<tr>
+	 		<td><input type="checkbox" name="test[]" value="{$vo.Id}"></td>	 		
+	 		<td>{$vo.dateline}</td>
+	 		<td>{$vo.issue|substr=8,10}</td>
+	 		<td>{$vo.number}</td>	 
+	 		{if condition="$vo.result==0"}
+	 		<td>龙</td>
+	 		{elseif condition="$vo.result==1"}
+	 		<td>虎</td>
+	 		{else/}
+	 		<td>和</td>
+	 		{/if}
+	 		<td><a href="{:url('admin/lottery/delete',['id'=>$vo.Id])}" onclick="return confirm('是否确认删除')" class="btn btn-danger" id="discard">删除</a></td>
+	 	</tr>
+	 	{/volist}	 	
+
+	</table>
+</div>
+</div>
+
+	<div class="col-md-8">
+		<a href="javascript:checkAll()" class="ids">全选</a>
+		<a href="javascript:checkNone()">全部取消</a>
+		<a href="javascript:check()">反选</a>
+		<button class="btn btn-danger" id="btn" onclick="return confirm('是否确认删除')">批量删除</button>
+	</div>
+</form>
+
+<div class="col-md-8">
+	{$lottery->render()}
+</div>
+
+
+{/block}
+
+{block name="js"}
+<script type="text/javascript">
+		// 获取对象
+		var cs = document.getElementsByName('test[]');
+		console.log(cs);
+
+		function checkAll() {
+			for (var i = 0; i < cs.length; i++) {
+				cs[i].checked = true;
+			}
+		}
+
+		function checkNone() {
+			for (var i = 0; i < cs.length; i++) {
+				cs[i].checked = false;
+			}
+		}
+
+		function check() {
+			for (var i = 0; i < cs.length; i++) {
+				cs[i].checked = !cs[i].checked;
+			}
+		}
+
+		 // $('#btn').click(function () {
+   //      var id = '';
+   //      $('input:checkbox[name=test]:checked').each(function(k){
+   //          if(k == 0){
+   //              id = $(this).val();
+   //          }else{
+   //              id += ','+$(this).val();
+   //          }
+   //          console.log(id)
+   //      })
+
+    // }) 
+	
+
+
+</script>
+{/block}

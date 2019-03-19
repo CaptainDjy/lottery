@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="css/common.css" />
+		<link rel="stylesheet" type="text/css" href="css/nineRemit.css" />
+		<title>计划</title>
+	</head>
+	<body>
+		<!-- 头部-->
+		<div class="navbar-fixed-top topbox">
+			<p class="plan_txt text-center">计划</p>
+			<p class="plan_tips">倍投与平推</p>
+		</div>
+		<!-- 中间列表-->
+		<div class="firstbox">
+			<div class="texbox">
+				<p style="font-size: 0.32rem; margin:0.5rem">倍投计划</p>
+				<div></div>
+			</div>
+		</div>
+		<div class="secondbox">
+			<div class="texbox">
+				<p style="font-size: 0.32rem; margin:0.5rem">平推计划</p>
+				<div></div>
+			</div>
+		</div>
+		<!--尾部-->
+		<div class="navbar-fixed-bottom  navbox">
+			<div class="homePage">
+				<img src="imgs/index/home_icon_home_default.png"/>
+				<p>首页</p>
+			</div>
+			<div class="trendPage">
+				<img src="imgs/index/home_icon_zoushi_default.png"/>
+				<p class="">走势</p>
+			</div>
+			<div class="planPage">
+				<img src="imgs/index/home_icon_plan_selected.png"/>
+				<p style="color:#25c744 ">计划</p>
+			</div>
+			<div class="300Page">
+				<img style="margin-left: 0.1rem" src="imgs/index/home_icon_300qi_default.png"/>
+				<p class="">300期</p>
+			</div>
+		</div>
+
+		<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/important.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/baseUrl.js"></script>
+		<script type="text/javascript">
+			$(function(){
+				$(".homePage").click(function(){
+					window.location.href='index.html';
+				});
+				$(".300Page").click(function(){
+					window.location.href='300Page.html';
+				});
+				$(".trendPage").click(function(){
+					window.location.href='trendPage.html';
+				});
+				/*firstbox倍投计划界面*/
+				$(".firstbox").click(function(){
+					window.location.href='beitouplan.html';
+				});
+				$(".secondbox").click(function(){
+					window.location.href='pingtuiplan.html';
+				});
+
+			});
+
+		</script>
+	</body>
+
+
+</html>
